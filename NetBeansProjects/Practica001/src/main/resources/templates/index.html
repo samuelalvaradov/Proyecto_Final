@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml%22">
+    <head>
+        <title>Practica1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h2>Datos del Pais</h2>
+        <a th:href="@{/estado/nuevo}">Nuevo Pais</a>
+        <div th:if="${estados != null and !estados.empty}">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID del País</th>
+                        <th>Nombre del País</th>
+                        <th>Capital dek País</th>
+                        <th>Número de Poblacíon</th>
+                        <th>¿Hay costas?</th>
+                        <th>Eliminar País</th>
+                        <th>Modificar datos del País</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="estado : ${estados}">
+                        <td>[[${estado.idEstado}]]</td>
+                        <td>[[${estado.nombre}]]</td>
+                        <td>[[${estado.capital}]]</td>
+                        <td>[[${estado.poblacion}]]</td>
+                        <td>[[${estado.costas}]]</td>
+                        <th> <a th:href="@{/estado/elimina/} + ${estado.idEstado}">Eliminar</a> </th>
+                        <th> <a th:href="@{/estado/actualiza/} + ${estado.idEstado}">Actualizar</a> </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${estados == null or estados.empty}">
+            <h3>No tenemos estados que mostar</h3>
+        </div>
+    </body>
+</html>
